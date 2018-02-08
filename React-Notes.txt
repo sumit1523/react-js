@@ -1,0 +1,1080 @@
+Video Links
+-------------
+
+TypeScript
+-----------
+https://www.yammer.com/api/v1/uploaded_files/82140642/preview/TypeScript.mp4
+
+
+Web Components
+---------------
+https://www.yammer.com/api/v1/uploaded_files/84597085/preview/WebComponents.mp4
+
+
+JavaScript Fundamentals
+-----------------------
+https://www.youtube.com/watch?v=cXlXSkgjOHE&t=5s 
+ 
+CSS Selectors
+---------------
+https://www.youtube.com/watch?v=cqVRDWKZsLs 
+ 
+
+ https://fts.capgemini.com/private/7866766616008/react-es6-app.zip
+ 
+
+React.js Main topics (3 days)
+-----------------------------
+
+Node.js Fundamentals
+React.js using ES5 (Deprecated) - Fundamentals (Node.js is not required)
+Bootstrap (optional)
+
+
+
+Webpack
+
+ES 2015
+React.js using ES2015 (Current) it requires Node.js
+Redux Introduction
+React with Redux (State management) ******
+
+
+Node Fundamentals
+------------------
+
+Node is built on the top of V8 (Google Chrome's Engine).
+
+There are 3 types of Modules in Node.js
+1. Inbuilt modules
+2. User-defined Modules
+3. Third Party Modules(NPMJS.org)
+
+
+01-inbuilt-modules.js
+---------------------
+var path = require('path'); //Import module
+console.log(path.resolve('hello.js'));
+console.log(path.join(__dirname,'index.html'));
+
+calculator.js
+-------------
+//java - Package C# - Namespace , javaScript - modules
+//Modules are used to group the related types and to avoid the naming collisions
+
+//User defined Module
+var Calculator = {  
+    add:function(a,b){
+        return a + b;
+    },
+    multiply:function(a,b){
+        return a * b;
+    }
+}
+
+module.exports = Calculator; //Exporting
+
+
+02-userdefined-module.js
+------------------------
+var calculator = require('./calculator')//user defined need to be imported using relative path
+console.log(calculator.add(5,6));
+console.log(calculator.multiply(5,6));
+
+
+Set proxy (if proxy block installing node packages)
+------------------------------------------------------
+
+npm config set proxy http://<domain>:<port>
+
+npm config set proxy http://blrproxy.igate.com:8080
+
+
+
+Important points for installing Third party Modules
+----------------------------------------------------
+To create Package.json (It is used to manage the package for the projects)
+
+npm init -y
+
+To install third party as a global module(It can be used in any project. It will be installed globally : 
+
+npm install -g <packagename>
+
+To install third party as a Project dependency module (It can be used in that project only. It will be installed in the project folder. It will be used in DEV and Production environment). -S will add the details in package.json file under section called dependdencies : 
+
+npm install -S <packagename> 
+
+To install third party as a Project developer dependency module (It can be used in that project only. It will be installed in the project folder and it will used only in the development environment)
+
+npm install -D <packagename>
+
+
+Install global modules
+-----------------------
+npm install -g rimraf
+
+
+npm install -S connect
+
+"dependencies": {
+    "connect": "^3.6.5"
+  }
+  
+  
+npm install -D chai
+  
+  "devDependencies": {
+    "chai": "^4.1.2"
+  }
+
+
+03-events.js
+--------------
+var events = require('events');//importing the inbuilt module
+var AppEventEmitter = new events.EventEmitter();//Use to create Custom Events
+
+var callback01 = function(arg){
+    console.log('CG Event Occured with Callback01: '+arg);
+}
+
+var callback02 = function(arg){
+    console.log('CG Event Occured with Callback02: '+arg);
+}
+
+//Adding the listener from cgEvent
+AppEventEmitter.addListener('cgEvent',callback01);
+AppEventEmitter.addListener('cgEvent',callback02);
+
+
+//Remove the listener from cgEvent
+AppEventEmitter.removeListener('cgEvent',callback01);
+
+//To Trigger the Custom Event
+AppEventEmitter.emit('cgEvent',5);
+
+
+
+04-http.js
+-----------
+var http = require('http');//Inbuilt module to create very basic custom webserver
+
+var server = http.createServer(function(req,res){
+    res.end('<h1>Welcome to Node HTTP Web Server</h1>');
+});
+
+server.listen(3000,function(){
+    console.log('Server listening on port 3000 at localhost. To stop press CTRL+C')    
+});
+
+******************************************************************************************
+
+ES - ECMA SCRIPT
+
+HTML - W3C Sets the Standards
+
+HTML 5 is in experimental stage.
+
+Scripting languages (ActionScript, JavaScript)- ECMAInternational Set the standandars (specification)
+
+ES1, ES2, ES3, ES4, ES5(All browsers supports this specifications)
+
+JavaScript has moved to its next level (it can be used in Client as well as Server with Node)
+
+OOP developers find difficult in using ES5 Syntax
+
+ES6 (or) ES2015 which is released in June 2016 makes OO developers to write JS in Object orientation
+
+Unfortunately all the browsers have not completely implemented the ES2015 specifications, So ES2015 need to get converted to ES5 to make it work in all the browsers
+
+Compilers like Babel, TypeScript and Traceur does this work(ES2015 to ES5).
+
+
+Node > v.6 supports ES 2015 100% (no need for any compiler)
+
+EMMET Snippets
+-------------- 
+html>head>title{React}^body>p{para-$}*5
+
+p{Para with Content}+p#main{Para with id}+p.sty{Para with class}+p[data-company="capgemini"]{Para with Attribute}
+
+table>(tr>td{td-$}*3)*3
+
+
+------------------------------------------------------------------------------------------
+React using ES5
+
+Introduction
+-------------
+React is an open source library developed by facebook where we define the components which gets rendered as HTML.
+
+It is a View (UI - V) in MVC  
+
+Develop SPA (Single Page Application) in a easier way.
+
+Why React?
+----------
+1. Renders the View Quickly
+
+2. It is easy to learn
+
+3. Facebook created and using it.
+
+DOM - Document Object Model
+---------------------------
+
+<html>
+<head>
+</head>
+<body>
+	<p>Capgemini</p>
+</body>
+</html>
+
+To perform any operation with DOM we have DOM API
+
+DOM Limitations
+-----------------
+
+DOM represents the web page in the tree structure. 
+Updating DOM is expensive
+Reading and writing with DOM API(document.getElementByTagName) are very slow
+
+Virtual DOM
+------------
+Virtual DOM is a DOM representation as a JavaScript Object (JS objects are faster than DOM)
+
+React abstract away the DOM from us, gives a simple programming model and better performance
+
+React never reads from Real DOM. It only writes to the real DOM if needed.
+
+
+JSX :  
+-----
+JavaScript in XML. JSX is a preprocessor step that adds XML syntax to JavaScript.JSX produces React elements. we can write the HTML Syntax.
+
+Note: We need to refer class as className in JSX
+
+
+
+
+How React Renders the View
+---------------------------
+Step 1 : JSX code which describes the application need to written.
+Step 2 : JSX is converted into JS by Babel Compilers
+Step 3 : React turns the converted JSX into Virtual DOM
+Step 4 : Virtual DOM is applied to the Real DOM
+Step 5 : When Underlying Data Model is updated
+Step 6 : React update the Virtual DOM and inturn updates the Real DOM in an efficient manner
+
+
+props(properties)
+-------------------
+It is used to pass the data and event handlers from parent element to the child element
+
+We can assign default properties for a components using  getDefaultProps()
+
+refs:
+-----
+  Ref is used to access the element in the component specified in JSX
+
+state
+-----
+ It is used to main state of the component. Usually the state will be available in the Top level component and it will be shared to its child through props.
+ 
+ getInitialState() is used to create state in the components
+ setState() is used to assign / modify the value of the state.
+ 
+Unidirectional Flow : 
+--------------------
+In React the data should flow in one way i.e. from the Parent to Child Component. Parent will share the data to the child using props.
+
+
+
+React Component Life Cycle
+--------------------------
+3 phases : Initialization / Mounting, Updation, Unmounting
+
+1. Initialization : Component gets Created / Mounted in the DOM
+
+2. Updation : Where the state and props value gets updated / value changes which tiggers the update.
+
+3. Unmounting : Component is deleted  / removed from the DOM
+
+
+getDefaultProps() : Gets executed before any instance of the component is created and the return value (object with properties) is shared among all the instances of the component.
+
+
+Bootstrap
+---------
+RWD - Responsive Web Design - Web page fits in all devices / any resolution
+
+CSS 3 - Media Queries
+
+Bootstrap is used to create professional responsive webpages with little knowledge in  HTML and CSS
+
+Bootstrap categorize the devices into : 
+
+Extra Small device (xs) : Mobile
+Small device (sm) : Tablets
+Medium device (md) : Desktop drowsers
+Large device (lg) : Smart TV
+
+It follows Mobile First Approach. If a webpage is created for XS (Extra small device) it will work in SM, MD and LG Devices.(No need to write any special code)
+
+Bootstrap follows a Grid System(12 column)
+
+<div class="row">
+  <div class="col-xs-6">First Section</div>
+  <div class="col-xs-6">Second Section</div>
+</div>
+
+***********************************************************************************
+
+Fake REST Api
+-------------
+http://jsonplaceholder.typicode.com
+
+
+function sample(){
+	this.counter = 0;
+	setTimeout(function(){
+		console.log(this.counter++);
+	}.bind(this),1000);
+}
+
+**********************************************************************************************
+Web optimization : Resources used in the web neeed to be optimized so that the webpages can be downloaded quicker.
+
+Resources : Images(png,jpeg,gif,svg), Scripts(JS), Styles(CSS), Media
+
+Bundling and Minification: Joining the resources (Many scripts can be bundled together to create it as one resource). 
+
+Gulp, Grunt : Task runners which performs the Web Optimization in JavaScript prior to webpack.
+
+Minification is a process where the Script gets uglified / minified
+1. Remove white spaces
+2. Variable names will be shortened
+3. Documentation and comments will be removed.
+
+
+webpack : 
+	webpack is a module bundler. Its main purpose is to bundle JavaScript files / css for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.
+	
+	1. Act as a Module loader
+	2. It peforms Web Optimization as well.
+
+To install Webpack as a Global module
+---------------------------------------
+
+npm install -g webpack
+
+
+
+app.js
+-------
+console.log('app.js : Webpack Working');
+
+
+index.html
+-----------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webpack Demo</title>
+</head>
+<body>
+    <h1>Webpack demo</h1>
+    <script src="./bundle.js"></script>
+</body>
+</html>
+
+:/> webpack app.js bundle.js 
+
+
+webpack.config.js
+------------------
+module.exports = {
+    entry:'./app.js',
+    output:{
+        filename:'./bundle.js'
+    }
+}
+
+:/> webpack
+
+
+To install webpack-dev-server
+------------------------------
+npm install -g webpack-dev-server
+
+
+:/> webpack-dev-server
+
+
+Now We can access the via http://localhost:8080/
+
+one.js
+------
+console.log('one.js');
+
+app.js
+------
+require('./one');
+console.log('app.js : Webpack Working');
+
+
+webpack.config.js
+------------------
+module.exports = {
+    entry:'./app.js',
+    output:{
+        filename:'./bundle.js'
+    },
+    watch:true 
+}
+
+global.js
+---------
+console.log('global.js');
+
+
+webpack.config.js
+------------------
+
+module.exports = {
+    entry:['./global.js','./app.js'],
+    output:{
+        filename:'./bundle.js'
+    },
+    watch:true 
+}
+
+
+add.es6
+-------
+/* ES5 Syntax */
+/*var add = function(a,b){
+    return a + b;
+}*/
+
+/* ES6 Syntax :  Arrow function */
+let add = (a,b)=> a + b;
+//String Interpolation using Backticks
+console.log(`Addition Result : ${add(5,6)}`);
+
+
+app.js
+------
+require('./one');
+require('./add');
+console.log('app.js : Webpack Working');
+
+
+Creating Package.json
+----------------------
+
+npm init -y
+
+package.json
+------------
+{
+  "name": "webpack-fundamentals",
+  "version": "1.0.0",
+  "description": "Webpack demo by Karthik",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "Karthik M",
+  "license": "ISC"
+}
+
+
+:/>npm run start
+
+
+To Convert ES6 to ES5 We required compiler like Babel
+-----------------------------------------------------
+
+npm install -D babel-core babel-loader 
+
+
+webpack.config.js
+------------------
+module.exports = {
+    entry:['./global.js','./app.js'],
+    output:{
+        filename:'./bundle.js'
+    },
+    watch:true ,
+    module:{
+        loaders:[
+            {
+                test:/\.es6/,
+                exclude:/node_modules/,
+                loader:"babel-loader"
+            }
+        ]
+    },
+    resolve:{
+        extensions:['.js','.es6']
+    }
+}
+
+
+Instructions: 
+--------------
+Place all the js and es6 files under js folder 
+Place index.html under public folder
+change the index.html script section from  <script src="./bundle.js"></script> to  
+<script src="./public/js/bundle.js"></script>
+
+
+webpack.config.js
+------------------
+const path = require('path');
+
+module.exports = {
+    context: path.resolve('js'),
+    entry:['./global','./app'],
+    output:{
+        path:path.resolve('build/js'),
+        publicPath:'public/js/',
+        filename:'./bundle.js'
+    },
+    watch:true ,
+    devServer:{
+        contentBase:'public'
+    },
+    module:{
+        loaders:[
+            {
+                test:/\.es6/,
+                exclude:/node_modules/,
+                loader:"babel-loader"
+            }
+        ]
+    },
+    resolve:{
+        extensions:['.js','.es6']
+    }
+}
+
+
+index.html
+-----------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webpack Demo</title>
+</head>
+<body>
+    <h1>Webpack demo</h1>
+    <script src="./public/js/bundle.js"></script>
+</body>
+</html>
+
+
+To See the build folder where the file is orinially build
+-----------------------------------------------------------
+
+http://localhost:8080/webpack-dev-server/
+
+
+package.json
+------------
+{
+  "name": "webpack-fundamentals",
+  "version": "1.0.0",
+  "description": "Webpack demo by Karthik",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --port 3000",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "keywords": [],
+  "author": "Karthik M",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2"
+  }
+}
+
+
+To run the application in dev server
+> npm run start
+
+To build the application
+> npm run build
+
+
+By default Webpack supports Commonjs Module pattern, inorder to support ES2015 module pattern we need to install babel-preset-env as a developer dependency and also we need to add the configuration details via .babelrc
+
+
+.babelrc
+---------
+{
+    "presets":["env"]
+}
+
+To do the minification we need to be in the production environment
+
+webpack.config.js
+-----------------
+const path = require('path');
+const webpack = require('webpack');
+
+module.exports = {
+    context: path.resolve('js'),
+    entry:{
+        "bundle":['./global.js','./app.js'],
+        "bundle.min":['./global.js','./app.js']
+    },
+    output:{
+        path:path.resolve('build/js'),
+        publicPath:'public/js/',
+        filename:'[name].js'
+    },
+    watch:true ,
+    plugins:[
+        new webpack.DefinePlugin({
+            'process.env':{
+                NODE_ENV:JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            include:/\.min.js$/,
+            minimize:true
+        })
+    ],
+    devServer:{
+        contentBase:'public'
+    },
+    module:{
+        loaders:[
+            {
+                test:/\.es6/,
+                exclude:/node_modules/,
+                loader:"babel-loader"
+            }
+        ]
+    },
+    resolve:{
+        extensions:['.js','.es6']
+    }
+}
+
+
+package.json
+------------
+{
+  "name": "webpack-fundamentals",
+  "version": "1.0.0",
+  "description": "Webpack demo by Karthik",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --port 3000",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "keywords": [],
+  "author": "Karthik M",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
+
+css/style.css
+---------------
+.kar{
+    text-transform: uppercase
+}
+
+app.js
+------
+require('../css/style');
+require('./one');
+require('./add');
+console.log('app.js : Webpack Working');
+
+index.html
+----------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webpack Demo</title>
+</head>
+<body>
+    <h1 class="kar">Webpack demo</h1>
+    <script src="./public/js/bundle.js"></script>
+</body>
+</html>
+
+
+
+package.json(final)
+-------------------
+{
+  "name": "webpack-fundamentals",
+  "version": "1.0.0",
+  "description": "Webpack demo by Karthik",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --port 3000",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "keywords": [],
+  "author": "Karthik M",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.9",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
+
+Packages
+---------
+
+babel-core : To compiles ES6 to ES5
+babel-loader : To load ES6 or JS Files
+babel-preset-env : To make Webpack to start support ES2015 Module Pattern
+css-loader : To load CSS files
+style-loader : To load the Styles
+Webpack : Used as a Module loader as well to optimize to code
+Webpack-dev-server : used to create dev server and transmit the files via http
+
+
+webpack.config.js (final)
+----------------
+const path = require('path');
+const webpack = require('webpack');
+
+module.exports = {
+    context: path.resolve('js'),
+    entry:{
+        "bundle":['./global.js','./app.js'],
+        "bundle.min":['./global.js','./app.js']
+    },
+    output:{
+        path:path.resolve('build/js'),
+        publicPath:'public/js/',
+        filename:'[name].js'
+    },
+    watch:true ,
+    plugins:[
+        new webpack.DefinePlugin({
+            'process.env':{
+                NODE_ENV:JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            include:/\.min.js$/,
+            minimize:true
+        })
+    ],
+    devServer:{
+        contentBase:'public'
+    },
+    module:{
+        loaders:[
+            {
+                test:/\.(es6|js)$/,
+                exclude:/node_modules/,
+                loader:"babel-loader"
+            },
+            {
+                test:/\.css$/,
+                exclude:/node_modules/,
+                loader:"style-loader!css-loader"
+            }
+        ]
+    },
+    resolve:{
+        extensions:['.js','.es6','.css']
+    }
+}
+
+
+Babel Online Compiler : https://babeljs.io/repl/
+
+class.js
+--------
+class Foo{
+    constructor(firstName,lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    printDetails(){
+        //console.log('First Name: '+this.firstName+' Last Name: '+this.lastName);
+        console.log(`First Name: ${this.firstName} Last Name: ${this.lastName}`);
+    }
+}
+
+var fooObj = new Foo('Karthik','Muthukrishnan');
+fooObj.printDetails();
+
+Note : Node > 6 supports 100% of ES6 Specification, so in Node Environment no need to have any compiler to compile it to ES5.
+
+inheritance.js
+-------------
+class Employee{
+    constructor(){
+        console.log('Employee Constructor Invoked');
+    }
+}
+
+class Manager extends Employee{
+    constructor(){
+        super();
+        console.log('Manager Constructor Invoked');
+    }
+}
+
+new Manager();
+
+arrow-function.js
+------------------
+//ES5 Syntax
+/*var add = function(a,b){
+    return a + b;
+}*/
+
+//ES6 Arrow Function
+//var add = (a,b)=> a + b;
+//console.log(add(5,6))
+
+/*(function(){
+    this.counter = 0;
+    setInterval(function(){
+        console.log(this.counter++);
+    }.bind(this),1000);
+})();*/
+
+
+//Arrow function by default will be binded with this with its outerscope no need to use bind method
+(()=>{
+    this.counter = 0;
+    setInterval(()=>{
+        console.log(this.counter++);
+    },1000);
+})();
+
+
+let-keyword
+------------
+(()=>{
+    //It maintains the scope
+    let x = 100;
+    if(true){
+        let x = 1000;
+        console.log(`Inside the block : ${x}`);
+    }
+    console.log(`Outside the block : ${x}`);
+})();
+
+
+spread and rest
+---------------
+var sample=(a,b,...args)=>{ //Rest operator (last argument in the parameter list)
+    console.log(`A : ${a} B : ${b} args: ${args}`);
+}
+var data=[6,7,8,10,50];
+sample(4,5,...data); //Spread operator
+
+const
+-----
+const i = 10;
+i = 11; //Error we cannot change the value
+
+
+optional and default parameters
+--------------------------------
+var printName = (name,city='Bangalore')=>{
+    console.log(`Name : ${name} City : ${city}`);
+}
+
+printName('Karthik');
+
+Cloning
+--------
+var employee = {id:100,name:'Karthik'};
+//To clone Object
+var clonedEmployee = Object.assign({desination:'Consultant'},employee);
+var numbers = [5,10,15,20];
+//var clonedNumbers = Object.assign([],numbers);//To Clone Array
+var clonedNumbers = [...numbers]//To Clone Array
+numbers[0] = 0;
+console.log(clonedEmployee);
+console.log(clonedNumbers);
+
+
+
+
+
+
+
+
+
+*************************************************************************************
+
+React - ES2015
+---------------
+
+To import the module we need to use import statement instead of require.
+To export we need to use export statement instead of module.exports.
+
+
+1. No Autobind
+
+      //binding the instance with the custom function
+        this.changeName = this.changeName.bind(this);
+
+2. PropTypes & Default Props need to be declared Separately
+
+class ModelComponent{}
+
+ModelComponent.propTypes = {
+    name:PropTypes.string.isRequired,
+    age:PropTypes.number.isRequired
+}
+
+
+Container Component (Smart, Stateful, Controller View)
+------------------------------------------------------
+Little to No Markup
+Pass data and actions down the component tree
+Stateful Component
+State, Refs, LifeCycle Methods can be written
+
+Presentation Component (Dumb, Stateless, View)
+-----------------------------------------------
+All Markups should be written here
+Recieve data and actions via props
+Functional Component
+
+********************************************************************************
+Redux - Introduction
+---------------------
+
+Pure function: 
+---------------
+Pure function will always return the same value with the get set of arguments.Pure function wont call any function which has an affect on the outside world. eg. No database calls, no http calls.
+
+Ex:
+var add = function(a,b){
+	return a + b;
+}
+add(4,5)
+
+Example for Impure Function
+-----------------------------
+var randomNumber = function(number){
+	return Math.random()*number;
+}
+
+randomNumber(5);
+randomNumber(5);
+
+
+Mutable and Immutable
+---------------------
+Mutable - Can be altered
+Immutable - cannot be altered (JS all primitives are Immutable)
+
+
+var i = 5; //i is pointing to a number(primitive) so that is i is immutable
+var j = i;
+j = 7; //i value wont change because j is pointing to a new address
+
+i : 5 j : 7
+
+
+var counter = {id:1,anotherid:8}
+var clonedCounter = counter;
+
+clonedCounter.id = 6; //it changes the counter  (not a best practice) //returns old state
+clonedCounter = {id:6,anotherid:8}   (best practice) //new state
+
+counter.id = 6    clonedCounter.id = 6
+
+Note : When the Primitives got changed it will always give a new state, where as objects will give the old state. As a best practice ensure that we give a new state by clone the object and assign it
+
+
+Important : Reducer is a function which takes state and action and always return a new state.
+
+
+
+Redux:
+------
+Note: Below mentioned Object Maintains the entire application state : 
+
+{
+	employees:[],
+	counter:0,
+	appDetails:{
+		name:'Karthik Application'
+	}
+}
+
+
+Redux maintains the entire application data in a single datastructure(object) called state which is held in a store.
+
+Application reads the state from the store
+
+The store is never mutated directly. User interaction (and other code) fires action (with payload) and new state is created by combining the old state and the action through a function called reducer.
+
+3 Important aspect of Redux
+---------------------------
+1. An Action, which defines what to do like INCREMENT with optional argument payload.
+   interface Action { type:string; payload?:any}
+   
+2. State stores all of the data in our application which is held in the store.
+
+3. Reducer is a function which takes the state and action and returns a new state.
+	interface Reducer(state:T,action:Action):T
+	
+Reducer:
+  It is a pure function. it takes the old state and and an action and returns a new state.
+  Reducer should not mutate the current state directly.
+  Reducer should always treat the currrent state as read-only. 
+  It should not change the state instead it returns a new state(usually the new state will be created with a copy of old state).
+  
+ 
+ 
+Storing the state in Stores:
+   
+   Reducers are pure function which will always returns the same data based on the arguments supplied, where as our application is not like that because things will change.
+   
+   Specifically when state changes we need to keep new state somewhere. Redux will will keep it in the store.
+   
+   Store has the responsibility of running the reducer by passing an action through dispatcher and keep the new state.
+
+Core of the Redux(Immutable Store,Action Trigger changes, Reducers return the updated state)
+--------------------------------------------------------------------------------------------
+Reducer takes the current state and action and returns a new state, which is held by the store
+   
+************************************************************************************
+
